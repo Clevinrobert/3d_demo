@@ -1,0 +1,56 @@
+name: Deploy Website to Azure VM
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to Azure VM
+        run: |
+          ssh -o StrictHostKeyChecking=no \
+              -i ~/.ssh/id_ed25519 \
+              ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+
+          sudo apt-get update
+
+          if [ ! -d ~/github-actions-demo-3d ]; then
+              git clone https://github.com/manoop98/github-actions-demo-3d.git
+          fi
+
+          cd ~/github-actions-demo-3d
+
+          git pull origin main
+
+          sudo mkdir -p /var/www/threed-demo
+
+          sudo cp -r * /var/www/threed-demo/
+
+          sudo chown -R www-data:www-data /var/www/threed-demo
+
+          sudo systemctl restart nginx
+
+          echo "Deployment Successful"
+
+          EOF
+
+      - name: Verify Deployment
+        run: |
+          curl http://${{ secrets.HOST }}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>VAISAKH DevOps Lab | GitHub Actions CI/CD</title>
+
+  <meta
+    name="description"
+    content="A modern 3D website automatically deployed from GitHub to an Azure Ubuntu VM using GitHub Actions CI/CD."
+  />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Three.js -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three/three.module.js",
+      "three/addons/": "./vendor/three/addons/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- 3D Scene -->
+  <div id="scene-container"></div>
+
+  <!-- Top Navigation -->
+  <header class="topbar">
+    <span class="logo">
+      ◆ VAISAKH
+      <span class="logo-thin">DEVOPS</span>
+    </span>
+
+    <span class="badge" id="deploy-badge">
+      🚀 Deployed Automatically using GitHub Actions
+    </span>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="hero">
+
+    <h1>
+      Welcome to
+      <span class="accent">VAISAKH DevOps Lab</span>
+    </h1>
+
+    <p>
+      A modern 3D demonstration website hosted on an
+      <strong>Azure Ubuntu Virtual Machine</strong>
+      and automatically deployed through a complete
+      <strong>GitHub Actions CI/CD Pipeline</strong>.
+    </p>
+
+    <div class="controls">
+
+      <button id="btn-color">
+        🎨 Change Color
+      </button>
+
+      <button id="btn-shape">
+        🔷 Next Shape
+      </button>
+
+      <button id="btn-spin">
+        ⚡ Toggle Spin
+      </button>
+
+    </div>
+
+    <p class="hint">
+      Azure VM • Ubuntu • Nginx • GitHub Actions • Three.js • CI/CD Pipeline
+    </p>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+
+    <span id="build-info">
+      Build: GitHub Actions Deployment
+    </span>
+
+    <span>
+      Created by VAISAKH Madhu | Cloud & DevOps Engineer
+    </span>
+
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+
+</body>
+</html>
