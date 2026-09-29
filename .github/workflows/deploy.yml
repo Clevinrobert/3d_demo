@@ -27,7 +27,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no \
               -i ~/.ssh/id_ed25519 \
-              ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+              azureuser@20.83.161.212 << 'EOF'
 
           sudo apt-get update
 
